@@ -4,7 +4,7 @@ A demonstration login webpage designed for educational security testing and brut
 
 ## Live Demo
 
-🔗 **[Access the Demo login page here]((https://nicomariio.github.io/mocklogin/)**
+🔗 **[Access the live demo here](https://nicomariio.github.io/mocklogin)**
 
 ## Features
 
