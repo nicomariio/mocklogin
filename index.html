@@ -40,11 +40,6 @@
             margin-bottom: 0.5rem;
         }
         
-        .login-header p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -112,8 +107,6 @@
             border: 1px solid #6ee7b7;
         }
         
-
-        
         .attempt-counter {
             text-align: center;
             margin-top: 1rem;
@@ -138,6 +131,7 @@
             background-color: #4b5563;
         }
         
+        /* Success Page Styles */
         .success-page {
             display: none;
             text-align: center;
@@ -208,6 +202,7 @@
             transform: translateY(-2px);
         }
         
+        /* Welcome Page Styles */
         .welcome-page {
             display: none;
             text-align: center;
@@ -270,13 +265,13 @@
             margin-bottom: 0;
         }
         
-        .credential-label {
+        .credential-row .credential-label {
             font-weight: 700;
             color: #1f2937;
             font-size: 1.1rem;
         }
         
-        .credential-value {
+        .credential-row .credential-value {
             font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
             background-color: #1f2937;
             color: #10b981;
@@ -309,31 +304,75 @@
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
-            <h1>Demo Webpage Login</h1>
-
+        <!-- Login Page -->
+        <div id="loginPage">
+            <div class="login-header">
+                <h1>Demo Webpage Login</h1>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="button" id="loginButton" class="login-btn">Login</button>
+            </form>
+            
+            <div id="notification" class="notification"></div>
+            <div class="attempt-counter">Login attempts: <span id="attemptCount">0</span></div>
+            
+            <button type="button" id="resetBtn" class="reset-btn">Reset Attempts</button>
         </div>
         
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+        <!-- Success Page -->
+        <div id="successPage" class="success-page">
+            <h2>✅ Successful Login</h2>
+            
+            <div class="credentials-display">
+                <h3>Login Credentials Used</h3>
+                <div class="credential-item">
+                    <span class="credential-label">Username:</span>
+                    <span class="credential-value" id="displayUsername"></span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">Password:</span>
+                    <span class="credential-value" id="displayPassword"></span>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            <button type="button" id="backBtn" class="back-btn">Back to Login</button>
+        </div>
+        
+        <!-- Welcome Page -->
+        <div id="welcomePage" class="welcome-page">
+            <div class="welcome-header">
+                <h1>🎉 Welcome to the System!</h1>
+                <p>You have successfully logged into the demo application.</p>
             </div>
             
-            <button type="submit" class="login-btn">Login</button>
-        </form>
-        
-        <div id="notification" class="notification"></div>
-        <div class="attempt-counter">Login attempts: <span id="attemptCount">0</span></div>
-        
-        <button id="resetBtn" class="reset-btn">Reset Attempts</button>
-        
-
+            <div class="user-info-card">
+                <h2>Login Session Details</h2>
+                
+                <div class="credential-display">
+                    <div class="credential-row">
+                        <span class="credential-label">Username:</span>
+                        <span class="credential-value" id="sessionUsername"></span>
+                    </div>
+                    <div class="credential-row">
+                        <span class="credential-label">Password:</span>
+                        <span class="credential-value" id="sessionPassword"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="button" id="logoutBtn" class="logout-btn">Logout & Return to Login</button>
+        </div>
     </div>
 
     <script>
@@ -343,51 +382,6 @@
             password: 'Admin2012'
         };
 
-        // Wait for DOM to be fully loaded
-        document.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const notification = document.getElementById('notification');
-            
-            attemptCount++;
-            document.getElementById('attemptCount').textContent = attemptCount;
-            
-            // Clear previous notification
-            notification.style.display = 'none';
-            notification.className = 'notification';
-            
-            // Add small delay to simulate server processing
-            setTimeout(() => {
-                if (username === validCredentials.username && password === validCredentials.password) {
-                    // Show success page with credentials
-                    showSuccessPage(username, password);
-                } else {
-                    // Generic error message - doesn't reveal what was wrong
-                    notification.textContent = 'Login failed. Please check your credentials and try again.';
-                    notification.classList.add('error');
-                    notification.style.display = 'block';
-                    
-                    // Clear form on failed attempt
-                    document.getElementById('loginForm').reset();
-                }
-            }, 500);
-                        });
-            } else {
-                console.error('Login form not found!');
-            }
-        
-        // Reset attempts functionality
-        document.getElementById('resetBtn').addEventListener('click', function() {
-            attemptCount = 0;
-            document.getElementById('attemptCount').textContent = attemptCount;
-            document.getElementById('notification').style.display = 'none';
-            document.getElementById('loginForm').reset();
-        });
-        
-        // Show success page
         function showSuccessPage(username, password) {
             console.log('Showing success page');
             document.getElementById('loginPage').style.display = 'none';
@@ -395,14 +389,11 @@
             document.getElementById('displayUsername').textContent = username;
             document.getElementById('displayPassword').textContent = password;
             
-            // Auto-transition to welcome page after 2 seconds
             setTimeout(function() {
-                console.log('Transitioning to welcome page');
                 showWelcomePage(username, password);
             }, 2000);
         }
         
-        // Show welcome page (the main logged-in page)
         function showWelcomePage(username, password) {
             console.log('Showing welcome page');
             document.getElementById('successPage').style.display = 'none';
@@ -410,14 +401,69 @@
             document.getElementById('sessionUsername').textContent = username;
             document.getElementById('sessionPassword').textContent = password;
         }
-        
-        // Back to login functionality
-        document.getElementById('backBtn').addEventListener('click', function() {
+
+        function handleLogin() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const notification = document.getElementById('notification');
+            
+            attemptCount++;
+            document.getElementById('attemptCount').textContent = attemptCount;
+            
+            notification.style.display = 'none';
+            notification.className = 'notification';
+            
+            setTimeout(function() {
+                if (username === validCredentials.username && password === validCredentials.password) {
+                    showSuccessPage(username, password);
+                } else {
+                    notification.textContent = 'Login failed. Please check your credentials and try again.';
+                    notification.classList.add('error');
+                    notification.style.display = 'block';
+                    document.getElementById('loginForm').reset();
+                }
+            }, 500);
+        }
+
+        function resetAttempts() {
+            attemptCount = 0;
+            document.getElementById('attemptCount').textContent = attemptCount;
+            document.getElementById('notification').style.display = 'none';
+            document.getElementById('loginForm').reset();
+        }
+
+        function backToLogin() {
             document.getElementById('successPage').style.display = 'none';
             document.getElementById('loginPage').style.display = 'block';
             document.getElementById('loginForm').reset();
             document.getElementById('notification').style.display = 'none';
-        });
+        }
+
+        function logout() {
+            document.getElementById('welcomePage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            document.getElementById('notification').style.display = 'none';
+            attemptCount = 0;
+            document.getElementById('attemptCount').textContent = attemptCount;
+        }
+
+        // Attach event listeners when page loads
+        window.onload = function() {
+            console.log('Page loaded, attaching event listeners');
+            
+            document.getElementById('loginButton').onclick = handleLogin;
+            document.getElementById('resetBtn').onclick = resetAttempts;
+            document.getElementById('backBtn').onclick = backToLogin;
+            document.getElementById('logoutBtn').onclick = logout;
+            
+            // Handle form submission with Enter key
+            document.getElementById('loginForm').onsubmit = function(e) {
+                e.preventDefault();
+                handleLogin();
+                return false;
+            };
+        };
     </script>
 </body>
 </html>
