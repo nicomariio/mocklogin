@@ -386,19 +386,22 @@
         
         // Show success page
         function showSuccessPage(username, password) {
+            console.log('Showing success page');
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('successPage').style.display = 'block';
             document.getElementById('displayUsername').textContent = username;
             document.getElementById('displayPassword').textContent = password;
             
             // Auto-transition to welcome page after 2 seconds
-            setTimeout(() => {
+            setTimeout(function() {
+                console.log('Transitioning to welcome page');
                 showWelcomePage(username, password);
             }, 2000);
         }
         
         // Show welcome page (the main logged-in page)
         function showWelcomePage(username, password) {
+            console.log('Showing welcome page');
             document.getElementById('successPage').style.display = 'none';
             document.getElementById('welcomePage').style.display = 'block';
             document.getElementById('sessionUsername').textContent = username;
