@@ -354,6 +354,7 @@
             padding: 1.5rem;
             margin: 1rem 0;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            min-width: 300px;
         }
         
         .credential-row {
@@ -365,6 +366,8 @@
             background-color: #f8fafc;
             border-radius: 8px;
             border-left: 4px solid #3b82f6;
+            min-height: 60px;
+            gap: 1rem;
         }
         
         .credential-row:last-child {
@@ -383,13 +386,17 @@
             color: #68d391;
             padding: 0.75rem 1.25rem;
             border-radius: 12px;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.25px;
             box-shadow: 0 4px 8px rgba(26, 32, 44, 0.2),
                         inset 0 1px 0 rgba(255, 255, 255, 0.1);
             position: relative;
             overflow: hidden;
+            min-width: 120px;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            max-width: 180px;
         }
         
         .credential-row .credential-value::before {
