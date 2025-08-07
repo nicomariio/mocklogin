@@ -374,7 +374,10 @@
                     document.getElementById('loginForm').reset();
                 }
             }, 500);
-        });
+                        });
+            } else {
+                console.error('Login form not found!');
+            }
         
         // Reset attempts functionality
         document.getElementById('resetBtn').addEventListener('click', function() {
