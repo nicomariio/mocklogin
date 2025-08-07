@@ -40,11 +40,6 @@
             margin-bottom: 0.5rem;
         }
         
-        .login-header p {
-            color: #666;
-            font-size: 0.9rem;
-        }
-        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -112,8 +107,6 @@
             border: 1px solid #6ee7b7;
         }
         
-
-        
         .attempt-counter {
             text-align: center;
             margin-top: 1rem;
@@ -137,35 +130,249 @@
         .reset-btn:hover {
             background-color: #4b5563;
         }
+        
+        /* Success Page Styles */
+        .success-page {
+            display: none;
+            text-align: center;
+        }
+        
+        .success-page h2 {
+            color: #059669;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .credentials-display {
+            background-color: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .credentials-display h3 {
+            color: #0369a1;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .credential-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #bae6fd;
+        }
+        
+        .credential-item:last-child {
+            border-bottom: none;
+        }
+        
+        .credential-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .credential-value {
+            font-family: 'Courier New', monospace;
+            background-color: #e5e7eb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: #1f2937;
+        }
+        
+        .back-btn {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Welcome Page Styles */
+        .welcome-page {
+            display: none;
+            text-align: center;
+            min-height: 400px;
+            padding: 2rem 0;
+        }
+        
+        .welcome-header {
+            margin-bottom: 3rem;
+        }
+        
+        .welcome-header h1 {
+            color: #059669;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .welcome-header p {
+            color: #374151;
+            font-size: 1.2rem;
+        }
+        
+        .user-info-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.1);
+        }
+        
+        .user-info-card h2 {
+            color: #0369a1;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .credential-display {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .credential-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .credential-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .credential-row .credential-label {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+        
+        .credential-row .credential-value {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background-color: #1f2937;
+            color: #10b981;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .logout-btn {
+            width: 100%;
+            margin-top: 3rem;
+            padding: 15px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+        }
     </style>
 </head>
 <body>
     <div class="login-container">
-        <div class="login-header">
-            <h1>Demo Webpage Login</h1>
-
+        <!-- Login Page -->
+        <div id="loginPage">
+            <div class="login-header">
+                <h1>Demo Webpage Login</h1>
+            </div>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                
+                <button type="button" id="loginButton" class="login-btn">Login</button>
+            </form>
+            
+            <div id="notification" class="notification"></div>
+            <div class="attempt-counter">Login attempts: <span id="attemptCount">0</span></div>
+            
+            <button type="button" id="resetBtn" class="reset-btn">Reset Attempts</button>
         </div>
         
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="username">Username</label>
-                <input type="text" id="username" name="username" required>
+        <!-- Success Page -->
+        <div id="successPage" class="success-page">
+            <h2>✅ Successful Login</h2>
+            
+            <div class="credentials-display">
+                <h3>Login Credentials Used</h3>
+                <div class="credential-item">
+                    <span class="credential-label">Username:</span>
+                    <span class="credential-value" id="displayUsername"></span>
+                </div>
+                <div class="credential-item">
+                    <span class="credential-label">Password:</span>
+                    <span class="credential-value" id="displayPassword"></span>
+                </div>
             </div>
             
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
+            <button type="button" id="backBtn" class="back-btn">Back to Login</button>
+        </div>
+        
+        <!-- Welcome Page -->
+        <div id="welcomePage" class="welcome-page">
+            <div class="welcome-header">
+                <h1>🎉 Welcome to the System!</h1>
+                <p>You have successfully logged into the demo application.</p>
             </div>
             
-            <button type="submit" class="login-btn">Login</button>
-        </form>
-        
-        <div id="notification" class="notification"></div>
-        <div class="attempt-counter">Login attempts: <span id="attemptCount">0</span></div>
-        
-        <button id="resetBtn" class="reset-btn">Reset Attempts</button>
-        
-
+            <div class="user-info-card">
+                <h2>Login Session Details</h2>
+                
+                <div class="credential-display">
+                    <div class="credential-row">
+                        <span class="credential-label">Username:</span>
+                        <span class="credential-value" id="sessionUsername"></span>
+                    </div>
+                    <div class="credential-row">
+                        <span class="credential-label">Password:</span>
+                        <span class="credential-value" id="sessionPassword"></span>
+                    </div>
+                </div>
+            </div>
+            
+            <button type="button" id="logoutBtn" class="logout-btn">Logout & Return to Login</button>
+        </div>
     </div>
 
     <script>
@@ -175,9 +382,27 @@
             password: 'Admin2012'
         };
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
+        function showSuccessPage(username, password) {
+            console.log('Showing success page');
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('successPage').style.display = 'block';
+            document.getElementById('displayUsername').textContent = username;
+            document.getElementById('displayPassword').textContent = password;
             
+            setTimeout(function() {
+                showWelcomePage(username, password);
+            }, 2000);
+        }
+        
+        function showWelcomePage(username, password) {
+            console.log('Showing welcome page');
+            document.getElementById('successPage').style.display = 'none';
+            document.getElementById('welcomePage').style.display = 'block';
+            document.getElementById('sessionUsername').textContent = username;
+            document.getElementById('sessionPassword').textContent = password;
+        }
+
+        function handleLogin() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const notification = document.getElementById('notification');
@@ -185,37 +410,60 @@
             attemptCount++;
             document.getElementById('attemptCount').textContent = attemptCount;
             
-            // Clear previous notification
             notification.style.display = 'none';
             notification.className = 'notification';
             
-            // Add small delay to simulate server processing
-            setTimeout(() => {
+            setTimeout(function() {
                 if (username === validCredentials.username && password === validCredentials.password) {
-                    notification.textContent = 'Login successful! Welcome to the system.';
-                    notification.classList.add('success');
+                    showSuccessPage(username, password);
                 } else {
-                    // Generic error message - doesn't reveal what was wrong
                     notification.textContent = 'Login failed. Please check your credentials and try again.';
                     notification.classList.add('error');
-                }
-                
-                notification.style.display = 'block';
-                
-                // Clear form on failed attempt
-                if (!notification.classList.contains('success')) {
+                    notification.style.display = 'block';
                     document.getElementById('loginForm').reset();
                 }
             }, 500);
-        });
-        
-        // Reset attempts functionality
-        document.getElementById('resetBtn').addEventListener('click', function() {
+        }
+
+        function resetAttempts() {
             attemptCount = 0;
             document.getElementById('attemptCount').textContent = attemptCount;
             document.getElementById('notification').style.display = 'none';
             document.getElementById('loginForm').reset();
-        });
+        }
+
+        function backToLogin() {
+            document.getElementById('successPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            document.getElementById('notification').style.display = 'none';
+        }
+
+        function logout() {
+            document.getElementById('welcomePage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            document.getElementById('notification').style.display = 'none';
+            attemptCount = 0;
+            document.getElementById('attemptCount').textContent = attemptCount;
+        }
+
+        // Attach event listeners when page loads
+        window.onload = function() {
+            console.log('Page loaded, attaching event listeners');
+            
+            document.getElementById('loginButton').onclick = handleLogin;
+            document.getElementById('resetBtn').onclick = resetAttempts;
+            document.getElementById('backBtn').onclick = backToLogin;
+            document.getElementById('logoutBtn').onclick = logout;
+            
+            // Handle form submission with Enter key
+            document.getElementById('loginForm').onsubmit = function(e) {
+                e.preventDefault();
+                handleLogin();
+                return false;
+            };
+        };
     </script>
 </body>
 </html>
