@@ -207,6 +207,104 @@
         .back-btn:hover {
             transform: translateY(-2px);
         }
+        
+        .welcome-page {
+            display: none;
+            text-align: center;
+            min-height: 400px;
+            padding: 2rem 0;
+        }
+        
+        .welcome-header {
+            margin-bottom: 3rem;
+        }
+        
+        .welcome-header h1 {
+            color: #059669;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .welcome-header p {
+            color: #374151;
+            font-size: 1.2rem;
+        }
+        
+        .user-info-card {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border: 2px solid #0ea5e9;
+            border-radius: 16px;
+            padding: 2.5rem;
+            margin: 2rem 0;
+            box-shadow: 0 10px 25px rgba(14, 165, 233, 0.1);
+        }
+        
+        .user-info-card h2 {
+            color: #0369a1;
+            margin-bottom: 2rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+        
+        .credential-display {
+            background-color: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .credential-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .credential-row:last-child {
+            margin-bottom: 0;
+        }
+        
+        .credential-label {
+            font-weight: 700;
+            color: #1f2937;
+            font-size: 1.1rem;
+        }
+        
+        .credential-value {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            background-color: #1f2937;
+            color: #10b981;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .logout-btn {
+            width: 100%;
+            margin-top: 3rem;
+            padding: 15px;
+            background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .logout-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(239, 68, 68, 0.3);
+        }
     </style>
 </head>
 <body>
@@ -292,6 +390,19 @@
             document.getElementById('successPage').style.display = 'block';
             document.getElementById('displayUsername').textContent = username;
             document.getElementById('displayPassword').textContent = password;
+            
+            // Auto-transition to welcome page after 2 seconds
+            setTimeout(() => {
+                showWelcomePage(username, password);
+            }, 2000);
+        }
+        
+        // Show welcome page (the main logged-in page)
+        function showWelcomePage(username, password) {
+            document.getElementById('successPage').style.display = 'none';
+            document.getElementById('welcomePage').style.display = 'block';
+            document.getElementById('sessionUsername').textContent = username;
+            document.getElementById('sessionPassword').textContent = password;
         }
         
         // Back to login functionality
