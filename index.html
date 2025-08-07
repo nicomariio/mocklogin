@@ -137,6 +137,76 @@
         .reset-btn:hover {
             background-color: #4b5563;
         }
+        
+        .success-page {
+            display: none;
+            text-align: center;
+        }
+        
+        .success-page h2 {
+            color: #059669;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .credentials-display {
+            background-color: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .credentials-display h3 {
+            color: #0369a1;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .credential-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #bae6fd;
+        }
+        
+        .credential-item:last-child {
+            border-bottom: none;
+        }
+        
+        .credential-label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .credential-value {
+            font-family: 'Courier New', monospace;
+            background-color: #e5e7eb;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            color: #1f2937;
+        }
+        
+        .back-btn {
+            width: 100%;
+            margin-top: 2rem;
+            padding: 12px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
     </style>
 </head>
 <body>
@@ -175,7 +245,9 @@
             password: 'Admin2012'
         };
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
+        // Wait for DOM to be fully loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const username = document.getElementById('username').value;
@@ -192,18 +264,15 @@
             // Add small delay to simulate server processing
             setTimeout(() => {
                 if (username === validCredentials.username && password === validCredentials.password) {
-                    notification.textContent = 'Login successful! Welcome to the system.';
-                    notification.classList.add('success');
+                    // Show success page with credentials
+                    showSuccessPage(username, password);
                 } else {
                     // Generic error message - doesn't reveal what was wrong
                     notification.textContent = 'Login failed. Please check your credentials and try again.';
                     notification.classList.add('error');
-                }
-                
-                notification.style.display = 'block';
-                
-                // Clear form on failed attempt
-                if (!notification.classList.contains('success')) {
+                    notification.style.display = 'block';
+                    
+                    // Clear form on failed attempt
                     document.getElementById('loginForm').reset();
                 }
             }, 500);
@@ -215,6 +284,22 @@
             document.getElementById('attemptCount').textContent = attemptCount;
             document.getElementById('notification').style.display = 'none';
             document.getElementById('loginForm').reset();
+        });
+        
+        // Show success page
+        function showSuccessPage(username, password) {
+            document.getElementById('loginPage').style.display = 'none';
+            document.getElementById('successPage').style.display = 'block';
+            document.getElementById('displayUsername').textContent = username;
+            document.getElementById('displayPassword').textContent = password;
+        }
+        
+        // Back to login functionality
+        document.getElementById('backBtn').addEventListener('click', function() {
+            document.getElementById('successPage').style.display = 'none';
+            document.getElementById('loginPage').style.display = 'block';
+            document.getElementById('loginForm').reset();
+            document.getElementById('notification').style.display = 'none';
         });
     </script>
 </body>
